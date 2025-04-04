@@ -15,12 +15,9 @@ using System.Windows.Shapes;
 
 namespace CustomControlsLib
 {
-    /// <summary>
-    /// Lógica de interacción para UserControl3.xaml
-    /// </summary>
-    public partial class UserControl3 : UserControl
+    public partial class DNITextBox : UserControl
     {
-        public UserControl3()
+        public DNITextBox()
         {
             InitializeComponent();
         }
