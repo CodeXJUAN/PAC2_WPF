@@ -1,0 +1,12 @@
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\bin\Debug\net8.0-windows\CustomControlsLib.deps.json
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\bin\Debug\net8.0-windows\CustomControlsLib.dll
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\bin\Debug\net8.0-windows\CustomControlsLib.pdb
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\CustomControlsLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\CustomControlsLib.AssemblyInfoInputs.cache
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\CustomControlsLib.AssemblyInfo.cs
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\CustomControlsLib.csproj.CoreCompileInputs.cache
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\CustomControlsLib.sourcelink.json
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\CustomControlsLib.dll
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\refint\CustomControlsLib.dll
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\CustomControlsLib.pdb
+C:\Users\juanm\source\repos\PAC2_LIB_WPF\CustomControlsLib\obj\Debug\net8.0-windows\ref\CustomControlsLib.dll
