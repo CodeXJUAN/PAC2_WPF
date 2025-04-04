@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\juanm\\source\\repos\\CodeXJUAN\\PAC2_WPF\\prueba\\prueba.csproj": {}
+    "C:\\Users\\birev\\OneDrive\\Escritorio\\Pac2\\prueba\\prueba.csproj": {}
   },
   "projects": {
-    "C:\\Users\\juanm\\source\\repos\\CodeXJUAN\\PAC2_WPF\\prueba\\prueba.csproj": {
+    "C:\\Users\\birev\\OneDrive\\Escritorio\\Pac2\\prueba\\prueba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\juanm\\source\\repos\\CodeXJUAN\\PAC2_WPF\\prueba\\prueba.csproj",
+        "projectUniqueName": "C:\\Users\\birev\\OneDrive\\Escritorio\\Pac2\\prueba\\prueba.csproj",
         "projectName": "prueba",
-        "projectPath": "C:\\Users\\juanm\\source\\repos\\CodeXJUAN\\PAC2_WPF\\prueba\\prueba.csproj",
-        "packagesPath": "C:\\Users\\juanm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\juanm\\source\\repos\\CodeXJUAN\\PAC2_WPF\\prueba\\obj\\",
+        "projectPath": "C:\\Users\\birev\\OneDrive\\Escritorio\\Pac2\\prueba\\prueba.csproj",
+        "packagesPath": "C:\\Users\\birev\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\birev\\OneDrive\\Escritorio\\Pac2\\prueba\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\juanm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\birev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
