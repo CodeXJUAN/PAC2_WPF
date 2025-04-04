@@ -18,9 +18,9 @@ namespace CustomControlsLib
     /// <summary>
     /// Lógica de interacción para UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class MinLengthTextBox : UserControl
     {
-        public UserControl1()
+        public MinLengthTextBox()
         {
             InitializeComponent();
         }
