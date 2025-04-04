@@ -8,26 +8,26 @@
     ".NETCoreApp,Version=v8.0": {
       "WPF-MVVM-SPA-Template/1.0.0": {
         "dependencies": {
-          "LiveCharts.Wpf": "0.9.7"
+          "LiveCharts.Wpf.Core": "0.9.8"
         },
         "runtime": {
           "WPF-MVVM-SPA-Template.dll": {}
         }
       },
-      "LiveCharts/0.9.7": {
+      "LiveCharts.Core/0.9.8": {
         "runtime": {
-          "lib/net45/LiveCharts.dll": {
+          "lib/netstandard2.0/LiveCharts.dll": {
             "assemblyVersion": "0.9.7.0",
             "fileVersion": "0.9.7.0"
           }
         }
       },
-      "LiveCharts.Wpf/0.9.7": {
+      "LiveCharts.Wpf.Core/0.9.8": {
         "dependencies": {
-          "LiveCharts": "0.9.7"
+          "LiveCharts.Core": "0.9.8"
         },
         "runtime": {
-          "lib/net45/LiveCharts.Wpf.dll": {
+          "lib/net5.0-windows7.0/LiveCharts.Wpf.dll": {
             "assemblyVersion": "0.9.7.0",
             "fileVersion": "0.9.7.0"
           }
@@ -41,19 +41,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "LiveCharts/0.9.7": {
+    "LiveCharts.Core/0.9.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-p4xyBrUaNNfkWZSNsIle0r51cyVyFg0Yi0uBRZM5GQtdFiA/7guZHlffFyNUILIdux10Ch2hUaJpcZENVU9aaQ==",
-      "path": "livecharts/0.9.7",
-      "hashPath": "livecharts.0.9.7.nupkg.sha512"
+      "sha512": "sha512-USb2TBOeER19X0ar5Zgki1ezjrSXBOmUoz3IqzTeksDm6hoaLFqs3iW9+wjHFuWNQGy9lLcVh2YIhhxVIg+zNQ==",
+      "path": "livecharts.core/0.9.8",
+      "hashPath": "livecharts.core.0.9.8.nupkg.sha512"
     },
-    "LiveCharts.Wpf/0.9.7": {
+    "LiveCharts.Wpf.Core/0.9.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-lv6YZoK0B4yWykMq5b9grZXtIbTj+OWu4sVN9GDpdgV6zffu64m4d5CW8KSjfSl9rB8VU649x1NZvhoU67hCDg==",
-      "path": "livecharts.wpf/0.9.7",
-      "hashPath": "livecharts.wpf.0.9.7.nupkg.sha512"
+      "sha512": "sha512-jMBdknuG3EOMKA0NaqqwMjhsZpRAzd0UqP0SlwXIBJ+ZoJg5TF9C4rDdKqInEs+RycYmIwmrZWvmfDxsM5MMJw==",
+      "path": "livecharts.wpf.core/0.9.8",
+      "hashPath": "livecharts.wpf.core.0.9.8.nupkg.sha512"
     }
   }
 }
