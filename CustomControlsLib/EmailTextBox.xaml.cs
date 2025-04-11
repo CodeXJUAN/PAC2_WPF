@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 namespace CustomControlsLib
 {
-    public partial class EmailTextBox : UserControl
+    public partial class EmailTextBox : UserControl, INotifyPropertyChanged
     {
         private static readonly Regex EmailRegex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
@@ -25,7 +17,7 @@ namespace CustomControlsLib
             textBox.TextChanged += TextBox_TextChanged;
         }
 
-        // DependencyProperty per al valor de l'email
+        // DependencyProperty for the email value
         public static readonly DependencyProperty EmailProperty =
             DependencyProperty.Register("Email", typeof(string), typeof(EmailTextBox),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnEmailChanged));
@@ -46,10 +38,10 @@ namespace CustomControlsLib
             control.ValidateEmail();
         }
 
-        // Propietat pública IsValid
+        // Public property IsValid
         public bool IsValid { get; private set; } = false;
 
-        // Propietat per controlar el color de la vora
+        // Property to control the border color
         public Brush BorderColor
         {
             get => (Brush)GetValue(BorderColorProperty);
@@ -79,6 +71,20 @@ namespace CustomControlsLib
                 BorderColor = Brushes.Red;
                 IsValid = false;
             }
+            OnPropertyChanged(nameof(IsValid)); // Notify change of IsValid
+        }
+
+        // Implementation of INotifyPropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged; // Marked as nullable to fix CS8618
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void textBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            // Empty event handler
         }
     }
 }
