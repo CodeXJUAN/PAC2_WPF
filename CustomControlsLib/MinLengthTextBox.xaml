@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <TextBox x:Name="InternalTextBox"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Stretch"
+             Margin="5" />
     </Grid>
 </UserControl>
