@@ -18,9 +18,9 @@ namespace CustomControlsLib
     /// <summary>
     /// Lógica de interacción para UserControl2.xaml
     /// </summary>
-    public partial class UserControl2 : UserControl
+    public partial class EmailTextBox : UserControl
     {
-        public UserControl2()
+        public EmailTextBox()
         {
             InitializeComponent();
         }

@@ -5,7 +5,7 @@
     <Compile Update="UserControl1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControl2.xaml.cs">
+    <Compile Update="EmailTextBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="DNITextBox.xaml.cs">
