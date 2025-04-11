@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-MVVM-SPA-Template", "WP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControlsLib", "CustomControlsLib\CustomControlsLib.csproj", "{AEF7ACDC-FF54-41BF-948D-E3F10CF77AEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{F5C3644F-3254-4685-A576-D6497C3F0AEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AEF7ACDC-FF54-41BF-948D-E3F10CF77AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEF7ACDC-FF54-41BF-948D-E3F10CF77AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEF7ACDC-FF54-41BF-948D-E3F10CF77AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C3644F-3254-4685-A576-D6497C3F0AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C3644F-3254-4685-A576-D6497C3F0AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C3644F-3254-4685-A576-D6497C3F0AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C3644F-3254-4685-A576-D6497C3F0AEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
