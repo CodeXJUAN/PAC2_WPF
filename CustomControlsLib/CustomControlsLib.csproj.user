@@ -11,5 +11,14 @@
     <Compile Update="DNITextBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="DNIWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EMAILWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MINLENWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
