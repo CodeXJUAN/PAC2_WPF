@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomControlsLib"
         mc:Ignorable="d"
-        Title="EMAILWindow" Height="450" Width="800">
+        Title="EMAILWindow" Height="180" Width="500">
     <Grid>
         
     </Grid>
