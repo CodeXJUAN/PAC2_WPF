@@ -1,17 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
-using System.Windows;
+using System.Linq;
 using WPF_MVVM_SPA_Template.Models;
 using WPF_MVVM_SPA_Template.Views;
 
 namespace WPF_MVVM_SPA_Template.ViewModels
 {
-    // El ViewModel deriva de INotifyPropertyChanged para poder hacer Binding de propiedades
-    class FormViewModel : INotifyPropertyChanged, IDataErrorInfo
+    class FormViewModel : INotifyPropertyChanged
     {
-        // Referencia al ViewModel principal
         private readonly MainViewModel _mainViewModel;
         private readonly ClientsViewModel _clientsViewModel;
 
@@ -20,13 +17,12 @@ namespace WPF_MVVM_SPA_Template.ViewModels
 
         public Client Client
         {
-            get { return _client; }
+            get => _client;
             set
             {
                 _client = value;
                 _originalClient = CloneClient(_client); // Guardar una copia del cliente original
                 OnPropertyChanged();
-                ValidateAllProperties();
             }
         }
 
@@ -44,19 +40,10 @@ namespace WPF_MVVM_SPA_Template.ViewModels
             };
         }
 
-        // Propiedades para los mensajes de error
-        public string DNIError { get; set; }
-        public string NomError { get; set; }
-        public string CognomsError { get; set; }
-        public string EmailError { get; set; }
-        public string TelefonError { get; set; }
-        public string DataAltaError { get; set; }
-
         // Comandos para los botones de la vista
         public RelayCommand GuardarCommand { get; set; }
         public RelayCommand CancelarCommand { get; set; }
 
-        // Constructor del ViewModel
         public FormViewModel(MainViewModel mainViewModel, ClientsViewModel clientsViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -67,30 +54,11 @@ namespace WPF_MVVM_SPA_Template.ViewModels
             CancelarCommand = new RelayCommand(x => Cancelar());
         }
 
-        // Método para guardar los datos del formulario
         private void Guardar()
         {
             if (Client != null)
             {
-                // Verifica si hay errores antes de guardar
-                var errores = new List<string>
-                {
-                    this[nameof(Client.DNI)],
-                    this[nameof(Client.Nom)],
-                    this[nameof(Client.Cognoms)],
-                    this[nameof(Client.Email)],
-                    this[nameof(Client.Telefon)],
-                    this[nameof(Client.DataAlta)]
-                }.Where(e => !string.IsNullOrEmpty(e)).ToList();
-
-                if (errores.Any())
-                {
-                    // Establece los mensajes de error
-                    ErrorMessages = string.Join("\n", errores);
-                    OnPropertyChanged(nameof(ErrorMessages));
-                    return;
-                }
-
+                // Verifica si el cliente ya existe
                 var clienteExistente = _clientsViewModel.Clients.FirstOrDefault(c => c.Id == Client.Id);
 
                 if (clienteExistente != null)
@@ -114,7 +82,6 @@ namespace WPF_MVVM_SPA_Template.ViewModels
             }
         }
 
-        // Método para cancelar la edición del formulario
         private void Cancelar()
         {
             // Restaurar los valores originales del cliente
@@ -138,185 +105,5 @@ namespace WPF_MVVM_SPA_Template.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
-        // Implementación de IDataErrorInfo
-        public string Error => null;
-        public string ErrorMessages { get; set; }
-
-        public string this[string columnName]
-        {
-            get
-            {
-                string result = string.Empty;
-                switch (columnName)
-                {
-                    case nameof(Client.DNI):
-                        if (string.IsNullOrWhiteSpace(Client.DNI))
-                        {
-                            result = "DNI no puede estar vacío.";
-                            DNIError = result;
-                        }
-                        else
-                        {
-                            DNIError = string.Empty;
-                        }
-                        break;
-                    case nameof(Client.Nom):
-                        if (string.IsNullOrWhiteSpace(Client.Nom) || Client.Nom.Length < 3)
-                        {
-                            result = "Nom ha de tenir al menys 3 caràcters.";
-                            NomError = result;
-                        }
-                        else
-                        {
-                            NomError = string.Empty;
-                        }
-                        break;
-                    case nameof(Client.Cognoms):
-                        if (string.IsNullOrWhiteSpace(Client.Cognoms) || Client.Cognoms.Length < 3)
-                        {
-                            result = "Cognoms ha de tenir al menys 3 caràcters.";
-                            CognomsError = result;
-                        }
-                        else
-                        {
-                            CognomsError = string.Empty;
-                        }
-                        break;
-                    case nameof(Client.Email):
-                        if (string.IsNullOrWhiteSpace(Client.Email) || !Regex.IsMatch(Client.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-                        {
-                            result = "Correu electrònic no té un format vàlid.";
-                            EmailError = result;
-                        }
-                        else
-                        {
-                            EmailError = string.Empty;
-                        }
-                        break;
-                    case nameof(Client.Telefon):
-                        if (string.IsNullOrWhiteSpace(Client.Telefon) || Client.Telefon.Length < 9)
-                        {
-                            result = "Teléfon ha de tenir al menys 9 digits.";
-                            TelefonError = result;
-                        }
-                        else
-                        {
-                            TelefonError = string.Empty;
-                        }
-                        break;
-                    case nameof(Client.DataAlta):
-                        if (Client.DataAlta < DateOnly.FromDateTime(DateTime.Today))
-                        {
-                            result = "Data d'Alta no pot ser anterior a la data d'avui.";
-                            DataAltaError = result;
-                        }
-                        else
-                        {
-                            DataAltaError = string.Empty;
-                        }
-                        break;
-                }
-                OnPropertyChanged(columnName + "Error");
-                return result;
-            }
-        }
-
-        private void ValidateAllProperties()
-        {
-            _ = this[nameof(Client.DNI)];
-            _ = this[nameof(Client.Nom)];
-            _ = this[nameof(Client.Cognoms)];
-            _ = this[nameof(Client.Email)];
-            _ = this[nameof(Client.Telefon)];
-            _ = this[nameof(Client.DataAlta)];
-        }
-    }
-}
-
-class Client : INotifyPropertyChanged
-{
-    private int _id;
-    private string _dni;
-    private string _nom;
-    private string _cognoms;
-    private string _email;
-    private string _telefon;
-    private DateOnly _dataAlta;
-
-    public int Id
-    {
-        get => _id;
-        set
-        {
-            _id = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string DNI
-    {
-        get => _dni;
-        set
-        {
-            _dni = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string Nom
-    {
-        get => _nom;
-        set
-        {
-            _nom = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string Cognoms
-    {
-        get => _cognoms;
-        set
-        {
-            _cognoms = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string Email
-    {
-        get => _email;
-        set
-        {
-            _email = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string Telefon
-    {
-        get => _telefon;
-        set
-        {
-            _telefon = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public DateOnly DataAlta
-    {
-        get => _dataAlta;
-        set
-        {
-            _dataAlta = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    protected void OnPropertyChanged([CallerMemberName] string? name = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
