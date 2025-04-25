@@ -1,122 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CustomControlsLib
 {
-    /// <summary>
-    /// Lógica de interacción para UserControl1.xaml
-    /// </summary>
     public partial class MinLengthTextBox : UserControl
     {
-        // DependencyProperty per al valor mínim de caràcters requerits
+        public MinLengthTextBox()
+        {
+            InitializeComponent();
+            System.Diagnostics.Debug.WriteLine($"MinLength inicialitzat: {MinLength}");
+        }
+
+        #region Dependency Properties
+
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register(
+                nameof(Text),
+                typeof(string),
+                typeof(MinLengthTextBox),
+                new PropertyMetadata(string.Empty, OnTextChanged));
+
+        public string Text
+        {
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
+        }
+
         public static readonly DependencyProperty MinLengthProperty =
             DependencyProperty.Register(
                 nameof(MinLength),
                 typeof(int),
                 typeof(MinLengthTextBox),
-                new PropertyMetadata(0, OnMinLengthChanged));
+                new PropertyMetadata(0, OnTextChanged));
 
-        // Propietat pública per accedir a MinLength
         public int MinLength
         {
             get => (int)GetValue(MinLengthProperty);
             set => SetValue(MinLengthProperty, value);
         }
 
-        // DependencyProperty per saber si el text és vàlid
-        private static readonly DependencyPropertyKey IsValidPropertyKey =
-            DependencyProperty.RegisterReadOnly(
-                nameof(IsValid),
+        public static readonly DependencyProperty IsValidMinLengthProperty =
+            DependencyProperty.Register(
+                nameof(IsValidMinLength),
                 typeof(bool),
                 typeof(MinLengthTextBox),
-                new PropertyMetadata(false));
+                new PropertyMetadata(true));
 
-        public static readonly DependencyProperty IsValidProperty = IsValidPropertyKey.DependencyProperty;
-
-        // Propietat pública per accedir a IsValid
-        public bool IsValid
+        public bool IsValidMinLength
         {
-            get => (bool)GetValue(IsValidProperty);
-            private set => SetValue(IsValidPropertyKey, value);
+            get => (bool)GetValue(IsValidMinLengthProperty);
+            private set => SetValue(IsValidMinLengthProperty, value);
         }
 
-        // Constructor
-        public MinLengthTextBox()
+        #endregion
+
+        #region Event Handlers
+
+        private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            InitializeComponent();
-
-            // Subscriure's a l'esdeveniment TextChanged del TextBox intern
-            InternalTextBox.TextChanged += OnTextChanged;
-
-            // Aplicar un estil personalitzat al TextBox intern
-            ApplyCustomStyle();
+            var control = (MinLengthTextBox)d;
+            control.ValidateText();
+            System.Diagnostics.Debug.WriteLine($"Text canviat: '{control.Text}', IsValidMinLength: {control.IsValidMinLength}");
         }
 
-        // Mètode per gestionar canvis en el valor de MinLength
-        private static void OnMinLengthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is MinLengthTextBox control)
-            {
-                control.ValidateText();
-            }
-        }
-
-        // Mètode per gestionar canvis en el text
-        private void OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            ValidateText();
-        }
-
-        // Mètode per validar el text i actualitzar l'estat del control
         private void ValidateText()
         {
-            bool isValid = string.IsNullOrEmpty(InternalTextBox.Text) ? false : InternalTextBox.Text.Length >= MinLength;
-
-            // Actualitzar la propietat IsValid
-            IsValid = isValid;
-
-            // Resaltar les vores en vermell si el text no és vàlid
-            if (!isValid)
-            {
-                InternalTextBox.BorderBrush = Brushes.Red;
-                InternalTextBox.BorderThickness = new Thickness(2);
-            }
-            else
-            {
-                InternalTextBox.ClearValue(BorderBrushProperty);
-                InternalTextBox.ClearValue(BorderThicknessProperty);
-            }
+            IsValidMinLength = string.IsNullOrEmpty(Text) || Text.Length >= MinLength;
         }
 
-        // Aplicar un estil personalitzat al TextBox intern
-        private void ApplyCustomStyle()
-        {
-            InternalTextBox.Style = new Style(typeof(TextBox))
-            {
-                Setters =
-                {
-                    // Establir colors i estils bàsics
-                    new Setter(Control.ForegroundProperty, Brushes.Black),
-                    new Setter(Control.BackgroundProperty, Brushes.White),
-                    new Setter(Control.BorderBrushProperty, Brushes.Gray),
-                    new Setter(Control.BorderThicknessProperty, new Thickness(1)),
-
-                    // Desactivar els estats predeterminats (Focus, Hover, etc.)
-                    new Setter(Control.TemplateProperty, null)
-                }
-            };
-        }
+        #endregion
     }
 }
