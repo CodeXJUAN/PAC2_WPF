@@ -8,7 +8,7 @@ namespace WpfApp1
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); // Este método debe estar disponible si el archivo XAML está correctamente vinculado
         }
     }
 }
