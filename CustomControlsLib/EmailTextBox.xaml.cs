@@ -9,17 +9,19 @@ namespace CustomControlsLib
 {
     public partial class EmailTextBox : UserControl, INotifyPropertyChanged
     {
-        private static readonly Regex EmailRegex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+        private static readonly Regex EmailRegex = new Regex(@"^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$", RegexOptions.Compiled);
+
+        private bool _isValid;
 
         public EmailTextBox()
         {
             InitializeComponent();
-            textBox.TextChanged += TextBox_TextChanged;
+            textBox.TextChanged += OnTextBoxTextChanged;
         }
 
-        // DependencyProperty for the email value
+        // DependencyProperty para Email
         public static readonly DependencyProperty EmailProperty =
-            DependencyProperty.Register("Email", typeof(string), typeof(EmailTextBox),
+            DependencyProperty.Register(nameof(Email), typeof(string), typeof(EmailTextBox),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnEmailChanged));
 
         public string Email
@@ -28,30 +30,38 @@ namespace CustomControlsLib
             set => SetValue(EmailProperty, value);
         }
 
-        private static void OnEmailChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = (EmailTextBox)d;
-            if (control.textBox.Text != (string)e.NewValue)
-            {
-                control.textBox.Text = (string)e.NewValue;
-            }
-            control.ValidateEmail();
-        }
+        // DependencyProperty para BorderColor
+        public static readonly DependencyProperty BorderColorProperty =
+            DependencyProperty.Register(nameof(BorderColor), typeof(Brush), typeof(EmailTextBox),
+            new PropertyMetadata(Brushes.Gray));
 
-        // Public property IsValid
-        public bool IsValid { get; private set; } = false;
-
-        // Property to control the border color
         public Brush BorderColor
         {
             get => (Brush)GetValue(BorderColorProperty);
             set => SetValue(BorderColorProperty, value);
         }
 
-        public static readonly DependencyProperty BorderColorProperty =
-            DependencyProperty.Register("BorderColor", typeof(Brush), typeof(EmailTextBox), new PropertyMetadata(Brushes.Gray));
+        // Propiedad IsValid (solo get)
+        public bool IsValid
+        {
+            get => _isValid;
+            private set
+            {
+                if (_isValid != value)
+                {
+                    _isValid = value;
+                    OnPropertyChanged(nameof(IsValid));
+                }
+            }
+        }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private static void OnEmailChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (EmailTextBox)d;
+            control.ValidateEmail();
+        }
+
+        private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
         {
             if (Email != textBox.Text)
             {
@@ -61,30 +71,15 @@ namespace CustomControlsLib
 
         private void ValidateEmail()
         {
-            if (EmailRegex.IsMatch(Email))
-            {
-                BorderColor = Brushes.Gray;
-                IsValid = true;
-            }
-            else
-            {
-                BorderColor = Brushes.Red;
-                IsValid = false;
-            }
-            OnPropertyChanged(nameof(IsValid)); // Notify change of IsValid
+            IsValid = EmailRegex.IsMatch(Email);
+            BorderColor = IsValid ? Brushes.Gray : Brushes.Red;
         }
 
-        // Implementation of INotifyPropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged; // Marked as nullable to fix CS8618
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        private void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void textBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-            // Empty event handler
         }
     }
 }
