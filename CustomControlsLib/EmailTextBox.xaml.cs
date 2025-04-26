@@ -73,6 +73,7 @@ namespace CustomControlsLib
         {
             IsValid = EmailRegex.IsMatch(Email);
             BorderColor = IsValid ? Brushes.Gray : Brushes.Red;
+            OnPropertyChanged(nameof(BorderColor));
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

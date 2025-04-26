@@ -47,7 +47,17 @@
             Grid.Column="1"
             Margin="5"
             VerticalAlignment="Center"
-            Text="{Binding Client.Id}" />
+            Text="{Binding Client.Id}">
+            <TextBlock.ToolTip>
+                <ToolTip
+                    Background="#2C3E50"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Foreground="White">
+                    Identificador únic del client (generat automàticament)
+                </ToolTip>
+            </TextBlock.ToolTip>
+        </TextBlock>
 
         <!--  DNI  -->
         <TextBlock
@@ -62,7 +72,19 @@
         <custom:DNITextBox
             Grid.Row="1"
             Grid.Column="1"
-            DNIValue="{Binding Client.DNI, UpdateSourceTrigger=PropertyChanged}" />
+            Height="30"
+            VerticalAlignment="Center"
+            DNIValue="{Binding Client.DNI, UpdateSourceTrigger=PropertyChanged}">
+            <custom:DNITextBox.ToolTip>
+                <ToolTip
+                    Background="#2C3E50"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Foreground="White">
+                    Introdueix un DNI vàlid (8 números i 1 lletra)
+                </ToolTip>
+            </custom:DNITextBox.ToolTip>
+        </custom:DNITextBox>
         <TextBlock
             Grid.Row="2"
             Grid.Column="1"
@@ -84,8 +106,20 @@
         <custom:MinLengthTextBox
             Grid.Row="3"
             Grid.Column="1"
+            Height="30"
+            VerticalAlignment="Center"
             MinLength="3"
-            Text="{Binding Client.Nom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Client.Nom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <custom:MinLengthTextBox.ToolTip>
+                <ToolTip
+                    Background="#2C3E50"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Foreground="White">
+                    Introdueix el nom del client (mínim 3 caràcters)
+                </ToolTip>
+            </custom:MinLengthTextBox.ToolTip>
+        </custom:MinLengthTextBox>
         <TextBlock
             Grid.Row="4"
             Grid.Column="1"
@@ -108,8 +142,20 @@
         <custom:MinLengthTextBox
             Grid.Row="5"
             Grid.Column="1"
+            Height="30"
+            VerticalAlignment="Center"
             MinLength="5"
-            Text="{Binding Client.Cognoms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Client.Cognoms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <custom:MinLengthTextBox.ToolTip>
+                <ToolTip
+                    Background="#2C3E50"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Foreground="White">
+                    Introdueix els cognoms del client (mínim 5 caràcters)
+                </ToolTip>
+            </custom:MinLengthTextBox.ToolTip>
+        </custom:MinLengthTextBox>
         <TextBlock
             Grid.Row="6"
             Grid.Column="1"
@@ -118,7 +164,6 @@
             Text="{Binding CognomsError}"
             TextWrapping="Wrap" />
 
-        <!--  Email  -->
         <!--  Email  -->
         <TextBlock
             Grid.Row="7"
@@ -132,7 +177,19 @@
         <custom:EmailTextBox
             Grid.Row="7"
             Grid.Column="1"
-            Email="{Binding Client.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            Height="30"
+            VerticalAlignment="Center"
+            Email="{Binding Client.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <custom:EmailTextBox.ToolTip>
+                <ToolTip
+                    Background="#2C3E50"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Foreground="White">
+                    Introdueix una adreça de correu electrònic vàlida (exemple: nom@domini.com)
+                </ToolTip>
+            </custom:EmailTextBox.ToolTip>
+        </custom:EmailTextBox>
         <TextBlock
             Grid.Row="8"
             Grid.Column="1"
@@ -140,7 +197,6 @@
             Foreground="Red"
             Text="{Binding EmailError}"
             TextWrapping="Wrap" />
-
 
         <!--  Telèfon  -->
         <TextBlock
@@ -157,7 +213,18 @@
             Grid.Row="9"
             Grid.Column="1"
             Height="30"
-            Text="{Binding Client.Telefon, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+            VerticalAlignment="Center"
+            Text="{Binding Client.Telefon, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
+            <TextBox.ToolTip>
+                <ToolTip
+                    Background="#2C3E50"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Foreground="White">
+                    Introdueix un número de telèfon vàlid, incloent el prefix si és necessari
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
         <TextBlock
             Grid.Row="10"
             Grid.Column="1"
@@ -181,7 +248,18 @@
             Grid.Row="11"
             Grid.Column="1"
             Height="30"
-            Text="{Binding Client.DataAlta, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
+            VerticalAlignment="Center"
+            Text="{Binding Client.DataAlta, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
+            <DatePicker.ToolTip>
+                <ToolTip
+                    Background="#2C3E50"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Foreground="White">
+                    Selecciona la data d'alta del client (ha de ser igual o posterior a avui)
+                </ToolTip>
+            </DatePicker.ToolTip>
+        </DatePicker>
         <TextBlock
             Grid.Row="12"
             Grid.Column="1"
